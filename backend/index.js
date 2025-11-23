@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Router } from "express";
 import cors from "cors";
 
 import "dotenv/config";
@@ -12,8 +12,7 @@ app.use(express.json());
 //router becuase of error
 import upload from "./middleware/upload.js"
 import { analyzeFood } from "./controller/analyze.js";
-const foodrouter = express.Router();
-
+const foodrouter = Router();
 foodrouter.post("/", upload.single("image"), analyzeFood);
 app.use("/analyze", foodrouter);
 
